@@ -85,7 +85,7 @@ export const specialityData = [
     },
 ]
 
-export const doctors = [
+export const astrologers = [
     {
         _id: 'astro1',
         name: 'Acharya Raghav Sharma',
