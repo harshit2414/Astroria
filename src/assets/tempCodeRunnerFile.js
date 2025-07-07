@@ -1,0 +1,7 @@
+files,
+    logo,
+    chats_icon,
+    verified_icon,
+    info_icon,
+    profile_pic,
+    arrow_icon,

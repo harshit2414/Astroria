@@ -88,7 +88,7 @@ export const specialityData = [
 export const astrologers = [
     {
         _id: 'astro1',
-        name: 'Acharya Raghav Sharma',
+        name: 'Acharya Raghav Rai',
         image: astro1,
         speciality: 'Vedic astrologer',
         experience: '20 Years',
