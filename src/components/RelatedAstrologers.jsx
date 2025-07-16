@@ -1,19 +1,29 @@
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
 import { AppContext } from '../context/AppContext'
+import { useState } from 'react';           
+import { useNavigate } from 'react-router-dom'; 
 
-const TopAstrologers = () => {
 
-    const navigate = useNavigate()
+const RelatedAstrologers = ({speciality,astroId}) => {
+
     const {astrologers} = useContext(AppContext)
-    
+    const navigate = useNavigate()
+
+    const [relAstro, setRelAstro] = useState([])
+
+    useEffect(() => {
+        if (astrologers.length > 0 && speciality) {
+            const astrologersData = astrologers.filter((astro) => astro.speciality === speciality && astro._id !== astroId)
+            setRelAstro(astrologersData)
+        }
+    }, [astrologers, speciality, astroId])
 
   return (
     <div className='flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10'>
         <h1 className='text-3xl font-medium'>Top Astrologers to Book</h1>
         <p className='sm:w-1/3 text-center text-sm'>Simply Browse through our extensive list of trusted astrologers.</p>
         <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0 '>
-            {astrologers.slice(0,10).map((item,index)=>(
+            {relAstro.slice(0,5).map((item,index)=>(
                 <div onClick={()=>{navigate(`/appointment/${item._id}`); scrollTo(0,0) }} className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
                     <img className='bg-blue-50' src={item.image} alt="" />
                     <div className='p-4'>
@@ -31,4 +41,4 @@ const TopAstrologers = () => {
   )
 }
 
-export default TopAstrologers
+export default RelatedAstrologers
