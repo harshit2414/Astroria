@@ -8,6 +8,8 @@ const Astrologers = () => {
 
   const [filterDoc,setFilterDoc] = useState([])
 
+  const [showFilter, setShowFilter] = useState(false)
+
   const navigate = useNavigate()
 
   const {astrologers} = useContext(AppContext)
@@ -30,7 +32,8 @@ const Astrologers = () => {
     <div>
         <p className='text-gray-600'>Browse through the astrologers specialist.</p>
         <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
-          <div className='flex flex-col gap-4 text-sm text-gray-600'>
+          <button className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${showFilter ? "bg-primary text-white" : ''}`} onClick={() => setShowFilter(prev => !prev)}>Filters</button>
+          <div className={` flex-col gap-4 text-sm text-gray-600 ${showFilter ? "flex" : "hidden"} sm:flex`}>
             <p onClick={()=> speciality === 'Vedic astrologer' ? navigate('/astrologers') : navigate('/astrologers/Vedic astrologer')} className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${speciality === "Vedic astrologer" ? "bg-primary text-white" : ""}`}>Vedic astrologer</p>
             <p onClick={()=> speciality === 'Numerologist' ? navigate('/astrologers') : navigate('/astrologers/Numerologist')} className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${speciality === "Numerologist" ? "bg-primary text-white" : ""}`}>Numerologist</p>
             <p onClick={()=> speciality === 'Palmist' ? navigate('/astrologers') : navigate('/astrologers/Palmist')} className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${speciality === "Palmist" ? "bg-primary text-white" : ""}`}>Palmist</p>
